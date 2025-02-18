@@ -1,5 +1,81 @@
 # 💫 About Me:
 🔭 I'm currently working on small business projets<br>🤝 I'm looking to collaborate on universal web development<br>🔍 I'm looking for help with mini apps for MacOS<br>🌱 I'm currently learning React, GOlang, Fast-api<br>💬Ask me about Algorithms and data structures<br>⚡️Fun fact: I also write programs for microcontrollers, and I'm not really happy about it
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Часы с цифровыми стрелками</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #222;
+        }
+        .clock {
+            position: relative;
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            background: white;
+            border: 5px solid black;
+        }
+        .hand {
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+            font-size: 18px;
+            font-weight: bold;
+            color: red;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div id="hour" class="hand"></div>
+        <div id="minute" class="hand"></div>
+        <div id="second" class="hand"></div>
+    </div>
+
+    <script>
+        function repeatText(value, times) {
+            return Array(times).fill(value).join(' ');
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            const hourAngle = (hours + minutes / 60) * 30;
+            const minuteAngle = (minutes + seconds / 60) * 6;
+            const secondAngle = seconds * 6;
+
+            const hourHand = document.getElementById('hour');
+            const minuteHand = document.getElementById('minute');
+            const secondHand = document.getElementById('second');
+            
+            hourHand.innerHTML = repeatText(hours || 12, 5).replace(/ /g, '<br>');
+            minuteHand.innerHTML = repeatText(minutes, 7).replace(/ /g, '<br>');
+            secondHand.innerHTML = repeatText(seconds, 10).replace(/ /g, '<br>');
+            
+            hourHand.style.transform = `translate(-50%, 0) rotate(${hourAngle}deg)`;
+            minuteHand.style.transform = `translate(-50%, 0) rotate(${minuteAngle}deg)`;
+            secondHand.style.transform = `translate(-50%, 0) rotate(${secondAngle}deg)`;
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
 
 
 ## 🌐 Socials:
